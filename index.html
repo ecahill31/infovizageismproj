@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ageism in Tech</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+        <link rel="stylesheet" href="age.css">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin-left:5em;
+            margin-right:5em;
+        }
+    /*    p { 
+            margin-left:5em; 
+            margin-right:5em;
+       } */
+        .btn-green {
+            background-color: #98d0a7;
+            color: #fff;
+        }
+
+        .btn-dark-green {
+            background-color: #417d5a;
+            color: #fff;
+        }
+        .btn-green:hover {
+            background-color: #8cccb9;
+        }
+        .btn-dark-green:hover {
+            background-color: #305b46;
+        }
+
+    </style>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+
+<body>
+    <div style="text-align:center;color:rgb(0, 151, 100)">
+        <br>
+        <br>
+        <h1>Navigating ageism in the tech sector</h1>
+    </div>
+    <br>
+    <br>
+    <div class="col">
+        <div class="col">
+            <h2>Let's explore what the tech sector is like for people aged 50+</h2>
+        </div>
+    </div>
+
+    <div class="row charts">
+        <div class="col" style="display: flex; justify-content: center;">
+            <tableau-viz id="tableauViz"
+                src='https://public.tableau.com/views/UsabilityTest1-Managerworkforcecomposition/Sheet1?:language=en-US&:display_count=n&:origin=viz_share_link'
+                device="desktop"
+                height="600px"
+                width="1000px">
+            </tableau-viz>
+        </div>
+    </div>
+
+    <div class="row charts">
+        <div class="col-4">
+            <p>Imagine one of your parents or legal guardians, who is a skilled data scientist looking for a new job.</p>
+        </div>
+        <div class="col-4">
+            <p>Let's look into statistics about data scientists and tech professionals.</p>
+        </div>
+        <div class="col-4">
+            <p>What information can you find about their age group?</p>
+        </div>
+    </div>
+
+    <div class="row charts">
+        <div class="col" style="display: flex; justify-content: center;">
+            <tableau-viz id="tableauViz"
+                src='https://public.tableau.com/views/UsabilityTest2-UnemploymentRate/Dashboard2?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link'
+                device="desktop"
+                height="600px"
+                width="1000px">
+            </tableau-viz>
+        </div>
+    </div>
+<br>
+    <div class="col">
+        <h2>They look on LinkedIn for Data Scientist jobs and find 221,450 results.</h2>
+        <br>
+        <p>Looking through these is not only overwhelming, but they sometimes think that they aren't the "ideal" candidate.</p>
+    </div>
+    <div class="row charts">
+        <div class="col">
+        <p>Let's look at whether the terms they see are age-unfriendly or age-neutral terms.</p>
+        <script>
+            const words = [
+            { text: "Enthusiastic", category: "non-ageist" },
+            { text: "Dedicated", category: "non-ageist" },
+            { text: "Dependable", category: "non-ageist" },
+            { text: "Careful", category: "non-ageist" },
+            { text: "Friendly", category: "non-ageist" },
+            { text: "Benevolent", category: "non-ageist" },
+            { text: "Work ethic", category: "non-ageist" },
+            { text: "Hard-working", category: "non-ageist" },
+            { text: "Communication", category: "non-ageist" },
+            { text: "Active", category: "ageist" },
+            { text: "Energetic", category: "ageist" },
+            { text: "High-Performer", category: "ageist" },
+            { text: "Fun", category: "ageist" },
+            { text: "Tech-savvy", category: "ageist" },
+            { text: "Fast learner", category: "ageist" },
+            { text: "Recent college graduate", category: "ageist" },
+            { text: "Youthful", category: "ageist" },
+            { text: "GPA", category: "ageist" }
+            ];
+            
+            
+            const ageist = words.filter(d => d.category === "ageist");
+            const lenghtofageist = ageist.length; 
+            
+            // Define the SVG dimensions
+            const width = 600;
+            const height = 400;
+            
+            // Define the color scale for ageist and non-ageist words
+            const color = d3.scaleOrdinal()
+                .domain(["ageist", "non-ageist"])
+                .range(["#6c8bbd", "#c37e7e"]);
+            
+            // Create the SVG element
+            const svg = d3.create("svg")
+                .attr("width", width)
+                .attr("height", height);
+            
+            // Create a group element for the word labels
+            const labelGroup = svg.append("g")
+                .attr("class", "labels");
+            
+            // Add the word labels to the group with random X and Y positions
+            const labels = labelGroup.selectAll("text")
+                .data(words)
+                .enter().append("text")
+                .text(d => d.text)
+                .attr("x", d => Math.random() * width)
+                .attr("y", d => Math.random() * height)
+                .style("font-family", "Helvetica")
+                .style("font-size", "16px");
+            
+            // Create a transition to move the words to their final positions
+            const transition = svg.transition()
+                .duration(6000);
+            
+            // Animation: Moving words to each side
+            transition.selectAll("text")
+                .attr("x", d => d.category === "ageist" ? width / 6 : 3.5 * width / 6)
+                .attr("y", function(d, i) {
+                if (d.category === "ageist") {
+                return i * 30 - 220;
+                } else {
+                return i * 30 + 50
+            }
+            })
+                .style("fill", d => color(d.category));
+            
+            // Add the column labels with fade in animation
+            
+            setTimeout(() => {
+            svg.append("text")
+                .text("Age Unfriendly Terms")
+                .attr("x", 160)
+                .attr("y", 20)
+                .attr("text-anchor", "middle")
+                .style("font-weight", "bold")
+                .attr("opacity", 0)
+                .transition()
+                .duration(1000)
+                .attr("opacity", 1);
+            
+            svg.append("text")
+                .text("Age Neutral Terms")
+                .attr("x", 400)
+                .attr("y", 20)
+                .attr("text-anchor", "middle")
+                .style("font-weight", "bold")
+                .attr("opacity", 0)
+                .transition()
+                .duration(1000)
+                .attr("opacity", 1);
+            }, 4500);
+            
+            
+            
+                document.body.appendChild(svg.node());
+            </script>
+            </div>
+        </div>
+    <div class="col">
+        <h2>They made it to the interview stage! They start telling you some of the questions they were asked.</h2>
+        <br>
+        <h2>Do you think they are being discriminated against with these questions?</h2>
+        <br>
+        <p style="display: inline-block; margin: 10px;">What is your energy level?</p>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor(this)" style="display: inline-block;">Discriminatory</button>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor2(this)" style="display: inline-block;">Not discriminatory</button>
+        <br>
+        <p style="display: inline-block; margin: 10px;">Are you okay with working for someone younger</p>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor(this)" style="display: inline-block;">Discriminatory</button>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor2(this)" style="display: inline-block;">Not discriminatory</button>
+        <br>
+        <p style="display: inline-block; margin: 10px;">Have you kept your technology skills up to date?</p>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor(this)" style="display: inline-block;">Discriminatory</button>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor2(this)" style="display: inline-block;">Not discriminatory</button>
+        <br>
+        <p style="display: inline-block; margin: 10px;">When did you graduate college?</p>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor(this)" style="display: inline-block;">Discriminatory</button>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor2(this)" style="display: inline-block;">Not discriminatory</button>
+                                
+        <br>
+    </div>
+    
+    <br>
+    <br>
+
+    <div class="col">
+        <h2>You start to wonder if there are substantial differences between those 50+ and under 50 in the workplace.</h2>
+        <br>
+        <p>Let's look at the most commonly used tools in data science and machine learning:</p>
+        <br>
+        <p>The average number of known data science and machine learning tools by age group</p>
+    </div>
+
+        <div class="row charts">
+            <div class="col" style="display: flex; justify-content: center;">
+                <tableau-viz id="tableauViz"
+                    src='https://public.tableau.com/views/final_agetech/2-Numberoftoolsknown-IndividualAgeRanges2?:language=en-US&:display_count=n&:origin=viz_share_link'
+                    device="desktop"
+                    height="600px"
+                    width="1000px">
+                </tableau-viz>
+            </div>
+        </div>
+
+        <div class="row justify-content-center header">
+            <div class="col-4">
+                <h1>This is my ending thing.</h1>
+            </div>
+        </div>
+
+    <div id="observablehq-datascientist-8b357d61"></div>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+    <script type="module">
+    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+    import define from "https://api.observablehq.com/d/a1c9e79311d462a0@55.js?v=3";
+    new Runtime().module(define, name => {
+        if (name === "datascientist") return new Inspector(document.querySelector("#observablehq-datascientist-8b357d61"));
+    });
+    </script>
+
+	<script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.4.0.js">
+	</script>
+
+    <script>
+        var count = 1;
+
+        function setColor(btn) {
+            if (count == 0) {
+                btn.classList.remove("btn-dark-green");
+                btn.classList.add("btn-green");
+                btn.innerHTML = "Discriminatory";
+                count = 1;
+            } else {
+                btn.classList.remove("btn-green");
+                btn.classList.add("btn-dark-green");
+                btn.innerHTML = "Discriminatory";
+                count = 0;
+            }
+        }
+
+        function setColor2(btn) {
+            if (count == 0) {
+                btn.classList.remove("btn-dark-green");
+                btn.classList.add("btn-green");
+                btn.innerHTML = "Not discriminatory";
+                count = 1;
+            } else {
+                btn.classList.remove("btn-green");
+                btn.classList.add("btn-dark-green");
+                btn.innerHTML = "Not discriminatory";
+                count = 0;
+            }
+        }
+    </script>
+
+    <div id="observablehq-chartInnerGlow-7a7f9a05"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+    <script type="module">
+    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+    import define from "https://api.observablehq.com/d/7ee6bca1b7c1ad27@306.js?v=3";
+    new Runtime().module(define, name => {
+    if (name === "chartInnerGlow") return new Inspector(document.querySelector("#observablehq-chartInnerGlow-7a7f9a05"));
+    });
+    </script>
+
+    <div id="observablehq-chartInnerGlow-7a7f9a05"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+    <script type="module">
+    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+    import define from "https://api.observablehq.com/d/7ee6bca1b7c1ad27@306.js?v=3";
+    new Runtime().module(define, name => {
+    if (name === "chartInnerGlow") return new Inspector(document.querySelector("#observablehq-chartInnerGlow-7a7f9a05"));
+    });
+    </script>
+
+</body>
+</html>
