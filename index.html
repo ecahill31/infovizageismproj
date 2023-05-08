@@ -41,17 +41,36 @@
 
 
 <body>
-    <div style="text-align:center;color:rgb(0, 151, 100)">
+    <div style="text-align:left;color:rgb(0, 151, 100)">
         <br>
         <br>
         <h1>Navigating ageism in the tech sector</h1>
     </div>
-    <br>
-    <br>
-    <div class="col">
+<br>
+    <div class="row justify-content-left">
         <div class="col">
-            <h2>Let's explore what the tech sector is like for people aged 50+</h2>
+            <h2>Imagine one of your parents or legal guardians, a skilled data scientist, is looking for a new job.</h2>
         </div>
+    </div>
+<br>
+    <div class="col">
+        <p style="text-align: left;">Let's explore what the tech sector is like for different age groups</p>
+    </div>
+
+    <div id="observablehq-chart-0d4c44b6"></div>    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+    <script type="module">
+    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+    import define from "https://api.observablehq.com/d/f80574acf6902a1b.js?v=3";
+    new Runtime().module(define, name => {
+      if (name === "chart") return new Inspector(document.querySelector("#observablehq-chart-0d4c44b6"));
+    });
+    </script>
+
+<br>
+  
+  <div class="col">
+    <p style="text-align: left;">Baby boomers show a steep decline with age...</p>
     </div>
 
     <div class="row charts">
@@ -64,19 +83,11 @@
             </tableau-viz>
         </div>
     </div>
-
-    <div class="row charts">
-        <div class="col-4">
-            <p>Imagine one of your parents or legal guardians, who is a skilled data scientist looking for a new job.</p>
-        </div>
-        <div class="col-4">
-            <p>Let's look into statistics about data scientists and tech professionals.</p>
-        </div>
-        <div class="col-4">
-            <p>What information can you find about their age group?</p>
-        </div>
+<br>
+<br>
+    <div class="col">
+        <p style="text-align: left;">What statistics about data scientists and tech professionals can you find about your parent/legal guardian's age group?</p>
     </div>
-
     <div class="row charts">
         <div class="col" style="display: flex; justify-content: center;">
             <tableau-viz id="tableauViz"
@@ -88,15 +99,25 @@
         </div>
     </div>
 <br>
+<br>
+
     <div class="col">
-        <h2>They look on LinkedIn for Data Scientist jobs and find 221,450 results.</h2>
-        <br>
-        <p>Looking through these is not only overwhelming, but they sometimes think that they aren't the "ideal" candidate.</p>
+        <h2>On LinkedIn, they find <strong>221,450</strong> Data Scientist jobs.</h2>
     </div>
+
     <div class="row charts">
-        <div class="col">
-        <p>Let's look at whether the terms they see are age-unfriendly or age-neutral terms.</p>
-        <script>
+
+        <div class="col-6">
+            <p style="text-align: left;">Looking through these is not only overwhelming, but they sometimes think that they aren't the "ideal" candidate.</p>
+        </div>
+        <div class="col-6">
+            <p style="text-align: left;">Let's look at whether the terms they see are age-unfriendly or age-neutral terms.</p>
+        </div> 
+    </div>
+
+    <div class="row charts">
+        <div class="col" style="display: flex; justify-content: center;">
+            <script>
             const words = [
             { text: "Enthusiastic", category: "non-ageist" },
             { text: "Dedicated", category: "non-ageist" },
@@ -198,27 +219,41 @@
             </script>
             </div>
         </div>
+
+
     <div class="col">
+        <br>
+
         <h2>They made it to the interview stage! They start telling you some of the questions they were asked.</h2>
         <br>
-        <h2>Do you think they are being discriminated against with these questions?</h2>
         <br>
+
+        <h3>Do you think they are being discriminated against with these questions?</h3>
+        <br>
+        
         <p style="display: inline-block; margin: 10px;">What is your energy level?</p>
-        <button type="button" class="btn btn-primary btn-green" onclick="setColor(this)" style="display: inline-block;">Discriminatory</button>
-        <button type="button" class="btn btn-primary btn-green" onclick="setColor2(this)" style="display: inline-block;">Not discriminatory</button>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor2(this)" style="width: 190px; float: right; margin-right: 10px">Not discriminatory</button>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor(this)" style="width: 150px; float: right;">Discriminatory</button>
         <br>
-        <p style="display: inline-block; margin: 10px;">Are you okay with working for someone younger</p>
-        <button type="button" class="btn btn-primary btn-green" onclick="setColor(this)" style="display: inline-block;">Discriminatory</button>
-        <button type="button" class="btn btn-primary btn-green" onclick="setColor2(this)" style="display: inline-block;">Not discriminatory</button>
         <br>
+
+        <p style="display: inline-block; margin: 10px;">Are you okay with working for someone younger?</p>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor2(this)" style="width: 190px; float: right; margin-right: 10px">Not discriminatory</button>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor(this)" style="width: 150px; float: right;">Discriminatory</button>
+        <br>
+        <br>
+
         <p style="display: inline-block; margin: 10px;">Have you kept your technology skills up to date?</p>
-        <button type="button" class="btn btn-primary btn-green" onclick="setColor(this)" style="display: inline-block;">Discriminatory</button>
-        <button type="button" class="btn btn-primary btn-green" onclick="setColor2(this)" style="display: inline-block;">Not discriminatory</button>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor2(this)" style="width: 190px; float: right; margin-right: 10px">Not discriminatory</button>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor(this)" style="width: 150px; float: right;">Discriminatory</button>
         <br>
+        <br>
+
         <p style="display: inline-block; margin: 10px;">When did you graduate college?</p>
-        <button type="button" class="btn btn-primary btn-green" onclick="setColor(this)" style="display: inline-block;">Discriminatory</button>
-        <button type="button" class="btn btn-primary btn-green" onclick="setColor2(this)" style="display: inline-block;">Not discriminatory</button>
-                                
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor2(this)" style="width: 190px; float: right; margin-right: 10px">Not discriminatory</button>
+        <button type="button" class="btn btn-primary btn-green" onclick="setColor(this)" style="width: 150px; float: right;">Discriminatory</button>
+        <br>
+    
         <br>
     </div>
     
@@ -230,36 +265,43 @@
         <br>
         <p>Let's look at the most commonly used tools in data science and machine learning:</p>
         <br>
-        <p>The average number of known data science and machine learning tools by age group</p>
     </div>
 
-        <div class="row charts">
-            <div class="col" style="display: flex; justify-content: center;">
-                <tableau-viz id="tableauViz"
-                    src='https://public.tableau.com/views/final_agetech/2-Numberoftoolsknown-IndividualAgeRanges2?:language=en-US&:display_count=n&:origin=viz_share_link'
-                    device="desktop"
-                    height="600px"
-                    width="1000px">
-                </tableau-viz>
-            </div>
-        </div>
+    <div class="row">
+        <h3>The top 10 coding tools used by all data scientists and machine learning engineers</h3>
+    </div>
+<br>
 
-        <div class="row justify-content-center header">
-            <div class="col-4">
-                <h1>This is my ending thing.</h1>
-            </div>
-        </div>
-
-    <div id="observablehq-datascientist-8b357d61"></div>
-    
+    <div id="observablehq-Animation2-e556660a"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
     <script type="module">
     import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-    import define from "https://api.observablehq.com/d/a1c9e79311d462a0@55.js?v=3";
+    import define from "https://api.observablehq.com/d/fcf0bdf5b73f705b@411.js?v=3";
     new Runtime().module(define, name => {
-        if (name === "datascientist") return new Inspector(document.querySelector("#observablehq-datascientist-8b357d61"));
+    if (name === "Animation2") return new Inspector(document.querySelector("#observablehq-Animation2-e556660a"));
+    return ["tooltip"].includes(name);
     });
     </script>
+
+<br>
+<br>
+<div>
+    <h3>The average number of known data science and machine learning tools by age group</h3>
+</div>
+
+    <div class="row charts">
+        <div class="col" style="display: flex; justify-content: center;">
+            <tableau-viz id="tableauViz"
+                src='https://public.tableau.com/views/final_agetech/2-Numberoftoolsknown-IndividualAgeRanges2?:language=en-US&:display_count=n&:origin=viz_share_link'
+                device="desktop"
+                height="600px"
+                width="1000px">
+            </tableau-viz>
+        </div>
+    </div>
+
+<br>
+
 
 	<script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.4.0.js">
 	</script>
@@ -296,25 +338,155 @@
         }
     </script>
 
-    <div id="observablehq-chartInnerGlow-7a7f9a05"></div>
+<br>
+<br>
+
+<div class="row">
+    <h3>Percentage of people in each age group that use the top 7 tools</h3>
+    <p>Do you see a substantial difference between the age groups?</p>
+</div>
+<br>
+    <div id="observablehq-chartInnerGlow-f9e8ff06"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
     <script type="module">
     import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-    import define from "https://api.observablehq.com/d/7ee6bca1b7c1ad27@306.js?v=3";
+    import define from "https://api.observablehq.com/d/7ee6bca1b7c1ad27@402.js?v=3";
     new Runtime().module(define, name => {
-    if (name === "chartInnerGlow") return new Inspector(document.querySelector("#observablehq-chartInnerGlow-7a7f9a05"));
+    if (name === "chartInnerGlow") return new Inspector(document.querySelector("#observablehq-chartInnerGlow-f9e8ff06"));
     });
     </script>
 
-    <div id="observablehq-chartInnerGlow-7a7f9a05"></div>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
-    <script type="module">
-    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-    import define from "https://api.observablehq.com/d/7ee6bca1b7c1ad27@306.js?v=3";
-    new Runtime().module(define, name => {
-    if (name === "chartInnerGlow") return new Inspector(document.querySelector("#observablehq-chartInnerGlow-7a7f9a05"));
+<br>
+<br>
+<div class="col">
+    <h1>Ageism is a problem that needs to be tackled. </h1>
+    <br>
+    <h2>Here are some resources on how to handle ageism:</h2>
+    <br>
+    <p><a href="https://www.helpguide.org/articles/aging-issues/ageism-and-age-discrimination.htm](https://www.helpguide.org/articles/aging-issues/ageism-and-age-discrimination.htm)">Ageism and Age Discrimination</a></p>
+    <p><a href="https://www.everydayhealth.com/longevity/emotional-wellness/fighting-age-discrimination.aspx](https://www.everydayhealth.com/longevity/emotional-wellness/fighting-age-discrimination.aspx)">7 Ways to Overcome Ageism</a></p>
+    <p><a href="https://www.bls.gov/opub/mlr/2020/beyond-bls/what-to-do-about-our-aging-workforce-the-employers-response.htm](https://www.bls.gov/opub/mlr/2020/beyond-bls/what-to-do-about-our-aging-workforce-the-employers-response.htm)">What to do about our aging workforce—the employers’ response</a></p>
+    <p><a href="https://www.forbes.com/sites/forbescoachescouncil/2018/10/25/14-smart-strategies-to-prepare-your-company-for-an-aging-workforce/?sh=580e60da6a94](https://www.forbes.com/sites/forbescoachescouncil/2018/10/25/14-smart-strategies-to-prepare-your-company-for-an-aging-workforce/?sh=580e60da6a94)">14 Smart Strategies To Prepare Your Company For An Aging Workforce</a></p>
+</div>
+<br>
+<br>
+
+
+
+<button onclick="displayWords()">Display Words</button>
+
+<div id="word-columns" style="display:none">
+  <div class="column">
+    <h3>Ageist Words</h3>
+    <ul id="ageist-words"></ul>
+  </div>
+  <div class="column">
+    <h3>Non-Ageist Words</h3>
+    <ul id="non-ageist-words"></ul>
+  </div>
+</div>
+
+
+<script>
+function displayWords() {
+    const words = [
+        { text: "Enthusiastic", category: "non-ageist" },
+        { text: "Dedicated", category: "non-ageist" },
+        { text: "Dependable", category: "non-ageist" },
+        { text: "Careful", category: "non-ageist" },
+        { text: "Friendly", category: "non-ageist" },
+        { text: "Benevolent", category: "non-ageist" },
+        { text: "Work ethic", category: "non-ageist" },
+        { text: "Hard-working", category: "non-ageist" },
+        { text: "Communication", category: "non-ageist" },
+        { text: "Active", category: "ageist" },
+        { text: "Energetic", category: "ageist" },
+        { text: "High-Performer", category: "ageist" },
+        { text: "Fun", category: "ageist" },
+        { text: "Tech-savvy", category: "ageist" },
+        { text: "Fast learner", category: "ageist" },
+        { text: "Recent college graduate", category: "ageist" },
+        { text: "Youthful", category: "ageist" },
+        { text: "GPA", category: "ageist" }
+    ];
+
+    // Clear the previous words
+    document.getElementById("ageist-words").innerHTML = "";
+    document.getElementById("non-ageist-words").innerHTML = "";
+
+    // Sort the words into ageist and non-ageist categories
+    const ageistWords = words.filter(word => word.category === "ageist");
+    const nonAgeistWords = words.filter(word => word.category === "non-ageist");
+
+    // Add the ageist words to the list
+    ageistWords.forEach(word => {
+        const li = document.createElement("li");
+        li.textContent = word.text;
+        document.getElementById("ageist-words").appendChild(li);
     });
-    </script>
+
+    // Add the non-ageist words to the list
+    nonAgeistWords.forEach(word => {
+        const li = document.createElement("li");
+        li.textContent = word.text;
+        document.getElementById("non-ageist-words").appendChild(li);
+    });
+
+    // Display the columns
+    document.getElementById("word-columns").style.display = "flex";
+}
+</script>
+
+<div>
+    <button onclick="displayWords2()">Display Words</button>
+    <div id="nonAgeistWords" style="display:none"></div>
+    <div id="ageistWords" style="display:none"></div>
+  </div>
+  
+  <script>
+  function displayWords2() {
+      // Filter the words based on their categories
+      const nonAgeistWords = words.filter(word => word.category === "non-ageist");
+      const ageistWords = words.filter(word => word.category === "ageist");
+  
+      // Define the duration and delay of the animation
+      const duration = 2000;
+      const delay = 100;
+  
+      // Add the non-ageist words to the nonAgeistWords div with movement animation
+      const nonAgeistDiv = document.getElementById("nonAgeistWords");
+      nonAgeistDiv.innerHTML = "";
+      nonAgeistWords.forEach((word, i) => {
+          const wordElement = document.createElement("p");
+          wordElement.innerText = word.text;
+          wordElement.style.opacity = 0;
+          nonAgeistDiv.appendChild(wordElement);
+          setTimeout(() => {
+              wordElement.style.transition = `opacity ${duration}ms`;
+              wordElement.style.opacity = 1;
+          }, delay * i);
+      });
+  
+      // Add the ageist words to the ageistWords div with movement animation
+      const ageistDiv = document.getElementById("ageistWords");
+      ageistDiv.innerHTML = "";
+      ageistWords.forEach((word, i) => {
+          const wordElement = document.createElement("p");
+          wordElement.innerText = word.text;
+          wordElement.style.opacity = 0;
+          ageistDiv.appendChild(wordElement);
+          setTimeout(() => {
+              wordElement.style.transition = `opacity ${duration}ms`;
+              wordElement.style.opacity = 1;
+          }, delay * i);
+      });
+  
+      // Display the div elements
+      nonAgeistDiv.style.display = "block";
+      ageistDiv.style.display = "block";
+  }
+  </script>
+  
 
 </body>
 </html>
